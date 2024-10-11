@@ -4,18 +4,21 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <div className="content">
       <h1> Todo App </h1>
 
-      <input className="task-input" type="text" />
+      <div id="task-bar">
+        <input className="task-input" type="text" />
+        <button>Add Task</button>
+      </div>
       <div className="task-list">
 
       </div>
       <div className="task-list">
-
+      
       </div>
     </div>
   )
