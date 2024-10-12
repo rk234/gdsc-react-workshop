@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Task from './components/Task';
 
 function App() {
   const [id, setId] = useState(0);
@@ -33,7 +32,7 @@ function App() {
 
       <div id="task-bar">
         <input value={task} onChange={(e) => setTask(e.target.value)} className="task-input" type="text" placeholder='Enter a task here...' />
-        <button onClick={handleClick} className="task-button">
+        <button disabled={task.length == 0} onClick={handleClick} className="task-button">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="plus-icn">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
@@ -43,10 +42,7 @@ function App() {
 
       <div className="task-list">
         {tasks.map(task => (
-          <div key={task.id} id="task-list-item">
-            <li>{task.value}</li>
-            <button onClick={() => handleDelete(task.id)}>Delete</button>
-          </div>
+          <Task key={task.id} task={task}></Task>
         ))}
       </div>
 

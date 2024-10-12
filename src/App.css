@@ -36,7 +36,7 @@
   border-radius: 8px;
   padding: 4px;
   cursor: pointer;
-  border: 2px solid #22d3ee;
+  border: 2px solid #67e8f9;
   transition: 0.2s;
   background-color: #67e8f9;
   font-weight: bold;
@@ -49,9 +49,23 @@
 
 .task-button:hover {
   background-color: #42d0ff;
+  border: 2px solid #42d0ff;
 }
 
 .task-button:active {
   border: 2px solid #a5f3fc;
   background-color: #a5f3fc;
+}
+
+.task-button:disabled {
+  border: 2px solid #f1f5f9;
+  cursor: not-allowed;
+  background-color: #f1f5f9;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
