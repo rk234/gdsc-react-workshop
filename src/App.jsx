@@ -3,28 +3,24 @@ import './App.css'
 import Task from './components/Task';
 
 function App() {
-  const [id, setId] = useState(0);
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState("");
 
   const handleClick = () => {
     setTasks([
       ...tasks,
-      { id: id, value: task }
+      { value: task, completed: false }
     ])
     setTask("");
-    setId(id + 1);
   }
 
-  const handleDelete = (id) => {
-    setTasks(
-      tasks.filter(t => t.id !== id)
-    )
-  }
+  const handleCheck = (id, complete) => {
+    setTasks(tasks.map((t, i) => {
+      if (i == id) t.completed = complete;
 
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks])
+      return t;
+    }))
+  }
 
   return (
     <div className="content">
@@ -41,8 +37,8 @@ function App() {
       </div>
 
       <div className="task-list">
-        {tasks.map(task => (
-          <Task key={task.id} task={task}></Task>
+        {tasks.map((task, index) => (
+          <Task key={index} task={task} onChange={checked => handleCheck(index, checked)}></Task>
         ))}
       </div>
 
