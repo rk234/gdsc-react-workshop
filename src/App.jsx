@@ -16,12 +16,6 @@ function App() {
     setId(id + 1);
   }
 
-  const handleDelete = (id) => {
-    setTasks(
-      tasks.filter(t => t.id !== id)
-    )
-  }
-
   useEffect(() => {
     console.log(tasks);
   }, [tasks])
