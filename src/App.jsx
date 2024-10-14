@@ -1,32 +1,40 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import Task from './components/Task';
 
 function App() {
-  const [id, setId] = useState(0);
   const [tasks, setTasks] = useState([]);
-  const [task, setTask] = useState("");
+  const [newTask, setNewTask] = useState("");
 
   const handleClick = () => {
     setTasks([
       ...tasks,
-      { id: id, value: task }
+      { value: newTask, completed: false }
     ])
-    setTask("");
-    setId(id + 1);
+    setNewTask("");
   }
 
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks])
+  const handleCheck = (id, complete) => {
+    setTasks(tasks.map((t, i) => {
+      if (i == id) t.completed = complete;
+
+      return t;
+    }))
+  }
 
   return (
     <div className="content">
       <h1> Todo App </h1>
 
       <div id="task-bar">
-        <input value={task} onChange={(e) => setTask(e.target.value)} className="task-input" type="text" placeholder='Enter a task here...' />
-        <button disabled={task.length == 0} onClick={handleClick} className="task-button">
+        <input
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          className="task-input"
+          type="text"
+          placeholder='Enter a task here...' />
+
+        <button disabled={newTask.length == 0} onClick={handleClick} className="task-button">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="plus-icn">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
@@ -35,8 +43,8 @@ function App() {
       </div>
 
       <div className="task-list">
-        {tasks.map(task => (
-          <Task key={task.id} task={task}></Task>
+        {tasks.map((task, index) => (
+          <Task key={index} task={task} onChange={checked => handleCheck(index, checked)}></Task>
         ))}
       </div>
 
