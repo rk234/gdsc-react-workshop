@@ -3,23 +3,18 @@ import './App.css'
 import Task from './components/Task';
 
 function App() {
+  // Create state variables to keep track of tasks.
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
+  // handleClick() function will be called to modify tasks state array.
   const handleClick = () => {
-    setTasks([
-      ...tasks,
-      { value: newTask, completed: false }
-    ])
-    setNewTask("");
+
   }
 
+  // handleCheck() function will be called to modify an incomplete task.
   const handleCheck = (id, complete) => {
-    setTasks(tasks.map((t, i) => {
-      if (i == id) t.completed = complete;
-
-      return t;
-    }))
+    
   }
 
   return (
@@ -42,6 +37,7 @@ function App() {
         </button>
       </div>
 
+      {/* Div container that will display all of the tasks. */}
       <div className="task-list">
         {tasks.map((task, index) => (
           <Task key={index} task={task} onChange={checked => handleCheck(index, checked)}></Task>
