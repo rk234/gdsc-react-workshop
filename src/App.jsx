@@ -3,18 +3,18 @@ import './App.css'
 import Task from './components/Task';
 
 function App() {
-  // Create state variables to keep track of tasks.
+  // Create state variables to keep track of tasks and input.
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
-  // handleClick() function will be called to modify tasks state array.
+  // handleClick() function will be called to modify tasks state array to add a new task.
   const handleClick = () => {
-
+    //TODO: Implement
   }
 
-  // handleCheck() function will be called to modify an incomplete task.
+  // handleCheck() function will be called to modify a task when it is checked/unchecked
   const handleCheck = (id, complete) => {
-    
+    //TODO: Implement    
   }
 
   return (
